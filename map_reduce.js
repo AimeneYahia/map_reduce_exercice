@@ -30,6 +30,7 @@ function countWords(oWord, index, array)
             {
                 if(aOWords[i].key == oWord.key)
                 {
+                    // We directly count the number of words, without creating an array (should not be done this way)
                     oWord.value++;
                     aOWords[i].counted = true;
                 }
@@ -48,6 +49,7 @@ function sort()
 /// REDUCE
 function reduce(oWord)
 {
+    // If the value is an array (ex: [1, 1, 1])
     if(oWord.value.length != undefined)
     {
         oWord.value = oWord.value.length;
@@ -70,8 +72,10 @@ function displayOutput()
 
 
 /// MAIN
+// input file (.txt) is not handled, we start directly with the array of strings
 var sRawInput = ["Hadoop uses MapReduce", "There is a Map phase", "", "There is a Reduce phase"];
 
+// The parallel (ulti-threaded?) work is not handled, the tasks are completed one at the time 
 sRawInput.forEach(map);
 sort();
 aSortedWords.forEach(reduce);
